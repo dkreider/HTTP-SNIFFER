@@ -11,18 +11,18 @@ Plans are to amplify as I get time to show things like host-name lookups, HTTP G
 #include "main.h"
 
 
-#define MAXBUF 0xFFFF
-#define MAXURL 4096
-
 int main()
 {
-  HANDLE handle;
-  WINDIVERT_ADDRESS addr;
+    HANDLE handle;
+    WINDIVERT_ADDRESS addr;
 	PWINDIVERT_IPHDR ip_header; 
+	PWINDIVERT_IPV6HDR ipv6_header;
+	PWINDIVERT_ICMPHDR icmp_header;
+	PWINDIVERT_ICMPV6HDR icmpv6_header;
 	PWINDIVERT_TCPHDR tcp_header;
 	PWINDIVERT_UDPHDR udp_header;
-  unsigned char packet[MAXBUF];
-  UINT packet_len;
+    unsigned char packet[MAXBUF];
+    UINT packet_len;
 	UINT payload_len;
 	PVOID payload;
 
@@ -100,7 +100,7 @@ int main()
 		}
 
 		// Inspect outgoing request further to reveal requested URL.
-		outgoing_url(payload, (UINT16)payload_len);
+		outbound_url(payload, (UINT16)payload_len);
 
 
         // Send packet
@@ -114,3 +114,4 @@ int main()
         }
     
 }
+
