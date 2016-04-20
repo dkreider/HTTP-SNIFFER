@@ -15,16 +15,16 @@ int main()
 {
     HANDLE handle;
     WINDIVERT_ADDRESS addr;
-	PWINDIVERT_IPHDR ip_header; 
-	PWINDIVERT_IPV6HDR ipv6_header;
-	PWINDIVERT_ICMPHDR icmp_header;
-	PWINDIVERT_ICMPV6HDR icmpv6_header;
-	PWINDIVERT_TCPHDR tcp_header;
-	PWINDIVERT_UDPHDR udp_header;
+    PWINDIVERT_IPHDR ip_header; 
+    PWINDIVERT_IPV6HDR ipv6_header;
+    PWINDIVERT_ICMPHDR icmp_header;
+    PWINDIVERT_ICMPV6HDR icmpv6_header;
+    PWINDIVERT_TCPHDR tcp_header;
+    PWINDIVERT_UDPHDR udp_header;
     unsigned char packet[MAXBUF];
     UINT packet_len;
-	UINT payload_len;
-	PVOID payload;
+    UINT payload_len;
+    PVOID payload;
 
     // Open the Divert device:
     handle = WinDivertOpen(
@@ -41,9 +41,10 @@ int main()
     }
     printf("OPENED WinDivert\n");
 
-    // Main loop:
+    // Main loop
     while (TRUE)
     {
+		// Received packet
 		if (!WinDivertRecv(handle, packet, sizeof(packet), &addr, &packet_len))
 		{
 			fprintf(stderr, "WARNING: failed to read packet (%d)\n",
@@ -103,7 +104,7 @@ int main()
 		outbound_url(payload, (UINT16)payload_len);
 
 
-        // Send packet
+                // Send packet
 		if (!WinDivertSend(handle, packet, packet_len, &addr, NULL))
 		{
 			fprintf(stderr, "warning: failed to reinject packet (%d)\n",
