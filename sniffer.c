@@ -1,9 +1,6 @@
-#include <windows.h>
-#include <stdio.h>
+#include "main.h"
 
-// Further inspect outgoing requests. 
-
-void outgoing_url(char *data, UINT16 len)
+void outbound_url(char *payload, UINT16 payload_len)
 {
-
+	// Do nothing for now.
 }
