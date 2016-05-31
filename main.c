@@ -6,6 +6,8 @@ connections on ports 53, 80 and 443.
 
 Plans are to amplify as I get time to show things like host-name lookups, HTTP GET requests, etc...
 
+I do not take much credit for this code as alot of it has been inspired by other examples.
+
 **********/
 
 #include "main.h"
